@@ -1,0 +1,7 @@
+const jwt = require('jsonwebtoken')
+
+// `v` is the admin's tokenVersion — changing the password bumps it and old tokens are refused.
+module.exports = (admin) =>
+  jwt.sign({ id: admin._id.toString(), v: admin.tokenVersion || 0 }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN || '7d',
+  })
