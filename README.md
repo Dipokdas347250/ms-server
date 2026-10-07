@@ -23,7 +23,8 @@ Start order: API → dashboard (`cd ../dashboard && npm run dev`, port 5173) →
 | `MONGODB_URI` | MongoDB Atlas connection string |
 | `JWT_SECRET` | 32+ random characters; changing it signs everyone out |
 | `CLIENT_URLS` | Origins allowed to call the API (dashboard in production) |
-| `ADMIN_NAME`, `ADMIN_EMAIL`, `ADMIN_PASSWORD` | First superadmin, used only by `npm run seed` |
+| `ADMIN_NAME`, `ADMIN_EMAIL`, `ADMIN_PASSWORD` | The shop's one admin, used by `npm run seed` and `npm run reset-admin` (which also clears a stuck session) |
+| `SESSION_IDLE_MINUTES` | Default 15. While the admin is signed in, other sign-ins are refused until they log out or the session is idle this long |
 | `TRACK_STOCK` | `true` = reject sold-out sizes and show low-stock alerts |
 | `TRUST_PROXY` | Proxies in front of the API (default 1: the Next.js storefront) |
 | `STEADFAST_*`, `META_*` | Optional fallbacks; normally set from the dashboard Settings page |

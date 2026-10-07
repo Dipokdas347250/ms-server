@@ -33,7 +33,6 @@ app.get('/api/health', (_req, res) => {
   res.status(db === 'connected' ? 200 : 503).json({ success: db === 'connected', data: { status: 'ok', db, time: new Date() } })
 })
 
-app.use('/api/admin/admins', require('./routes/adminRoutes'))
 app.use('/api/admin/dashboard', require('./routes/dashboardRoutes'))
 app.use('/api/admin', require('./routes/authRoutes'))
 app.use('/api/orders', require('./routes/orderRoutes'))

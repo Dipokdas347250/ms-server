@@ -13,6 +13,9 @@ const adminSchema = new mongoose.Schema(
     passwordChangedAt: Date,
     // Bumped on password change so tokens issued before it stop working.
     tokenVersion: { type: Number, default: 0 },
+    // The one signed-in session. While it is active, nobody else can sign in.
+    sessionId: { type: String, default: null },
+    sessionSeenAt: Date,
   },
   { timestamps: true },
 )
@@ -34,6 +37,7 @@ adminSchema.set('toJSON', {
   transform: (_doc, ret) => {
     delete ret.password
     delete ret.tokenVersion
+    delete ret.sessionId
     delete ret.__v
     return ret
   },

@@ -39,6 +39,9 @@ async function seedAdmin() {
   if (await Admin.exists({ email: ADMIN_EMAIL.toLowerCase() })) {
     return console.log(`• Admin ${ADMIN_EMAIL} already exists (password unchanged — use "npm run reset-admin" to apply ADMIN_PASSWORD)`)
   }
+  if (await Admin.exists({})) {
+    return console.log('• The shop already has its admin (only one is allowed — use "npm run reset-admin" to replace it)')
+  }
   await Admin.create({ name: ADMIN_NAME || 'Owner', email: ADMIN_EMAIL, password: ADMIN_PASSWORD, role: 'superadmin' })
   console.log(`✓ Superadmin ${ADMIN_EMAIL} created`)
 }
